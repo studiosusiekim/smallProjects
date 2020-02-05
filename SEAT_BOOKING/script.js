@@ -1,18 +1,30 @@
 const container = document.querySelector('.container');
-document.querySelectorAll('.row .seat:not(.occupied)');
+const seats = document.querySelectorAll('.row .seat:not(.occupied)');
 
 const count = document.getElementById('count');
 const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 
 let ticketPrice = parseInt(movieSelect.value);
+// Save selected movie and price
+function setMovieData(movieIndex, moviePrice) {
+  localStorage.setItem('selectedMovieIndex', movieIndex);
+  localStorage.setItem('selectedMoviePrice', moviePrice);
+
+}
+
 
 // Update total and count
 function updateSelectedCount() {
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
-   
+
+    const seatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat));
+// Set item in 'key:value' pair & in order to save an array in LS we use JSONstringify
+    localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
+    
+
     const selectedSeatsCount = selectedSeats.length;
-  console.log(selectedSeatsCount);
+
     count.innerText = selectedSeatsCount;
     total.innerText = selectedSeatsCount * ticketPrice;
   }
@@ -20,6 +32,7 @@ function updateSelectedCount() {
 // Movie select element
 movieSelect.addEventListener('change', e => {
   ticketPrice = parseInt(e.target.value);
+  setMovieData(e.target.selectedIndex, e.target.value);
   updateSelectedCount();
 });
 
