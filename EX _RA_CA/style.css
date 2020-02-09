@@ -36,7 +36,7 @@ p {
 }
 
 .currency select {
-    padding: 10px 20px 10px 10px;
+    padding: 10px 25px 10px 10px;
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
@@ -55,10 +55,18 @@ p {
     text-align: right;
 }
 
+.swap-rate-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+
 .rate {
     font-size: 14px;
     padding: 0 10px;
-  }
+    color: #418DFD;
+}
   
   select:focus,
   input:focus,
